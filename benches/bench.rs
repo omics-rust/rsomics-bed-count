@@ -7,7 +7,10 @@ fn bench_bed_count(c: &mut Criterion) {
     let bin = env!("CARGO_BIN_EXE_rsomics-bed-count");
     let manifest = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     // bed-count reads stdin or a positional file; use a small BED from bed-complement golden
-    let bed = manifest.parent().unwrap().join("rsomics-bed-complement/tests/golden/input.bed");
+    let bed = manifest
+        .parent()
+        .unwrap()
+        .join("rsomics-bed-complement/tests/golden/input.bed");
     c.bench_function("rsomics-bed-count golden", |b| {
         b.iter(|| {
             let out = Command::new(black_box(bin))
