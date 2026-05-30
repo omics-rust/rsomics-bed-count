@@ -1,10 +1,7 @@
 use rsomics_common::{Result, RsomicsError};
 use std::io::BufRead;
 
-/// Count non-header, non-blank BED records. Returns the count.
-///
-/// Header lines (starting with `#`) and blank lines are skipped.
-/// The count is written to stdout by the CLI.
+/// Count non-header, non-blank BED records.
 pub fn count<R: BufRead>(reader: R) -> Result<u64> {
     let mut n: u64 = 0;
     for line in reader.lines() {
